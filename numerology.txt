@@ -1,0 +1,35 @@
+function lifePathCalculator(birthdate) { //take in a birthdate
+//turn it into a string and then spilt it into an array
+//by the dash, rejoin, and then split again.
+let lifePathTotal = 0;
+let tempArr = [];
+let tempStr = '';
+let overTen = 0;
+let overTenArr = [];
+tempArr = birthdate.split('-');
+tempArr = tempArr.join();
+tempArr = tempArr.split('');
+for (let i = 0; i < tempArr.length; i++){
+  if (tempArr[i] === ','){
+    tempArr[i] = '0';
+  }
+}
+for (let i = 0; i < tempArr.length; i++){
+  lifePathTotal += Number(tempArr[i]); 
+  if (lifePathTotal === 10){
+    lifePathTotal = 1;
+  }
+  else if (lifePathTotal > 10){
+    while (lifePathTotal > 9){
+    tempStr = lifePathTotal.toString();
+    overTenArr = tempStr.split('');
+        overTen += Number(overTenArr[0]);
+      lifePathTotal = overTen;
+
+  }
+    console.log(overTen);
+}
+return lifePathTotal;
+}
+}
+lifePathCalculator('8-29-1999'); //should return 2
